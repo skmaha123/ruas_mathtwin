@@ -17,8 +17,24 @@ Each module has a live maths panel, an engineering twin, sliders, performance me
 | Biology & Health | Nonlinear ODE (SIR) | Epidemic vs hospital capacity |
 | Quantum & Materials | Eigenvalues | Quantum-dot size → QLED colour |
 
+## AI & LLM — maths for everyone (new section)
+Start page `#ai` shows the LLM pipeline (inputs → embeddings → transformer → next token → training), then:
+
+| Twin | Maths | What you see |
+|---|---|---|
+| Text → tokens → vectors (`#tokens`) | Vectors, cosine similarity | Tokenizer, token IDs, embedding space, king − man + woman |
+| Images & video (`#vision`) | Matrices & tensors | Pixel matrix, RGB channels, vision-transformer patches, frame differences |
+| Audio (`#audio`) | Sampling, Fourier transform | Waveform, spectrogram, Nyquist/aliasing |
+| Neural network learns (`#nn`) | Matrix multiply, chain rule | Live training, decision map, loss curve |
+| Gradient descent (`#gd`) | Partial derivatives | Loss surface, learning rate, momentum, divergence |
+| Convolutional network (`#cnn`) | 2-D convolution | Sliding kernel, feature maps, weight sharing |
+| Attention (`#attn`) | Dot products, softmax | Attention matrix, "it" → "motor" |
+| Next-word prediction (`#llm`) | Probability, softmax, entropy | Temperature, top-k, live text generation |
+
+All AI twins are small teaching models running in the browser, using the same equations as real systems.
+
 ## Publish on GitHub Pages
-1. Create a public repository (e.g. `math-twin`) and upload **all files in this folder** (keep them flat, include `.nojekyll`).
+1. Create a public repository (e.g. `math-twin`) and upload **all files in this folder** (including `ai.js`) (keep them flat, include `.nojekyll`).
 2. Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)` → Save.
 3. Open `https://<your-user>.github.io/math-twin/` (direct link to a module: add `#me`, `#civil`, `#auto`, `#ee`, `#ece`, `#cse`, `#aero`, `#chem`, `#bio`, `#quantum`).
 
