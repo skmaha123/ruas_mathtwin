@@ -111,3 +111,8 @@ footer { text-align: center; color: var(--mut); font-size: 12px; padding: 14px; 
 .mtab th { background: var(--pur); color: #fff; text-align: left; padding: 8px 12px; }
 .mtab td { padding: 8px 12px; border-bottom: 1px solid var(--line); }
 .mtab td:first-child { font-family: Cambria, Georgia, serif; font-weight: 700; color: var(--cri); }
+.aiblock { margin-top: 30px; padding: 20px; border-radius: 16px; background: linear-gradient(180deg, #eef5fc, #faf8fd 220px); border: 1px solid #cfe1f3; }
+.aihead { display: flex; gap: 14px; align-items: flex-start; background: linear-gradient(120deg, #1d0f3f, var(--pur) 50%, #0f5c8a); color: #fff; border-radius: 14px; padding: 16px 20px; }
+.aihead > span { font-size: 36px; }
+.aihead h2 { color: #fff; margin: 0 0 4px; }
+.aihead p { margin: 0; opacity: .9; }

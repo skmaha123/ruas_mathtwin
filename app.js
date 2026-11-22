@@ -22,14 +22,13 @@ const cardHTML = m => `
         <span class="open">Open twin →</span>
       </button>`;
 
-function aiHome() {
-  cancelAnimationFrame(raf); current = null;
+function aiSectionHTML(withHero) {
   const step = (id, ic, t, d) => `<button class="pstep" data-id="${id}"><span class="pic">${ic}</span><b>${t}</b><small>${d}</small></button>`;
-  $("#main").innerHTML = `
-    <section class="hero ai">
+  return `
+    ${withHero ? `<section class="hero ai">
       <h1>How AI and Large Language Models work — <span>it is all mathematics</span></h1>
       <p>ChatGPT, Claude, Gemini and image or speech AI are not magic. They are <b>vectors, matrices, derivatives and probability</b> — the same B.Tech maths — applied billions of times. Follow the pipeline below; every box opens a live, hands-on twin.</p>
-    </section>
+    </section>` : ""}
     <h2 class="sec">1 · Everything becomes numbers</h2>
     <div class="pipe">
       ${step("tokens", "🔤", "Text", "split into tokens → vectors")}
@@ -65,6 +64,10 @@ function aiHome() {
     </table>
     <div class="grid" style="margin-top:18px">${MODULES.filter(m => m.group === "ai").map(cardHTML).join("")}</div>
     <p class="fine">All AI twins are tiny teaching models that run in your browser. They use the same equations as real systems, at a scale you can see.</p>`;
+}
+function aiHome() {
+  cancelAnimationFrame(raf); current = null;
+  $("#main").innerHTML = aiSectionHTML(true);
   $("#main").onclick = e => { const c = e.target.closest(".card,.pstep"); if (c) go(c.dataset.id); };
 }
 
@@ -78,7 +81,10 @@ function home() {
     </section>
     <h2 class="sec">Math topic → where it works</h2>
     <div class="grid">${MODULES.filter(m => m.group !== "ai").map(cardHTML).join("")}</div>
-    <button class="aibanner" data-id="ai"><span>🤖</span><div><b>NEW · How AI &amp; LLMs work — maths for everyone</b><small>Tokens, images, audio, neural networks, attention, gradient descent, next-word prediction — 8 hands-on twins</small></div><em>Start →</em></button>
+    <section id="ai-section" class="aiblock">
+      <div class="aihead"><span>🤖</span><div><h2>How AI &amp; Large Language Models work — maths for everyone</h2><p>ChatGPT, Claude, Gemini, image and speech AI are vectors, matrices, derivatives and probability — the same B.Tech maths. Click any box to open its live twin.</p></div></div>
+      ${aiSectionHTML(false)}
+    </section>
     <h2 class="sec">How to use this in a class (15 minutes)</h2>
     <ol class="howto">
       <li><b>Pose the engineering question</b> shown at the top of a twin before showing any equation.</li>
@@ -88,7 +94,7 @@ function home() {
       <li><b>Close with the theory</b>: now the derivation has a reason to exist.</li>
     </ol>
     <p class="fine">Models are deliberately simplified for teaching (stated under each equation). Use them to build intuition, not for final design.</p>`;
-  $("#main").onclick = e => { const c = e.target.closest(".card,.aibanner"); if (c) go(c.dataset.id); };
+  $("#main").onclick = e => { const c = e.target.closest(".card,.pstep"); if (c) go(c.dataset.id); };
 }
 
 function ctrlHTML(c) {
@@ -154,12 +160,14 @@ function loop() {
 function go(id) {
   document.querySelectorAll(".navbtn").forEach(b => b.classList.toggle("on", b.dataset.id === id));
   if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+  if (id === "home-ai") { home(); document.getElementById("ai-section").scrollIntoView(); return; }
   const m = MODULES.find(x => x.id === id);
   m ? show(m) : id === "ai" ? aiHome() : home();
   window.scrollTo(0, 0);
   document.body.classList.remove("menu");
 }
 
+window.addEventListener("hashchange", () => { const id = location.hash.slice(1) || "home"; if (!current || current.id !== id) go(id); });
 window.addEventListener("resize", () => { if (current) schedule(); });
 buildNav();
 $("#burger").onclick = () => document.body.classList.toggle("menu");
