@@ -15,7 +15,7 @@ function home() {
   cancelAnimationFrame(raf); current = null;
   $("#main").innerHTML = `
     <section class="hero">
-      <h1>The maths you learn in B.Tech — <span>running live inside real engineering</span></h1>
+      <h1>The maths of B.Tech — <span>running live inside real engineering</span></h1>
       <p>Each card is a <b>digital twin</b>: a mathematical model on the left, the engineering system it controls on the right. Move a slider and watch both the equation and the performance of the product change together.</p>
       <div class="legend"><span class="st good">✔ On target</span><span class="st warn">▲ Watch</span><span class="st bad">✖ Fails a design limit</span></div>
     </section>
